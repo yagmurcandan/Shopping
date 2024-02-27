@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Button, Form, Table, FormCheck } from "react-bootstrap";
+import { Button, Form, Table, FormCheck, FormGroup } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import IconButton from "./components/IconButton";
 import JSConfetti from "js-confetti";
 import Fuse from "fuse.js";
+import "./App.css";
 
 const markets = [
   {
@@ -98,8 +99,7 @@ function App() {
   });
 
   return (
-    <>
-      <h2>Add Product</h2>
+    <div className="">
       <Form>
         <InputWrapper>
           <Form.Control
@@ -155,10 +155,14 @@ function App() {
           </Button>
         </InputWrapper>
       </Form>
-      <h2>Filter Product</h2>
       <Form className="mb-5">
-        <InputWrapper>
-          <div key={`default-radio`} className="mb-3">
+        <InputWrapper className="d-flex align-items-center">
+          <h4 className="me-2 mt-1 text-light">Filter</h4>
+          <FormGroup
+            key={`default-radio`}
+            className="ms-3 me-3 px-2 py-2 d-flex justify-content-center rounded gap-2"
+            style={{ width: "max-content" }}
+          >
             <Form.Check
               type={"radio"}
               label={`All`}
@@ -179,7 +183,6 @@ function App() {
                 setFilterIsPurchased(true);
               }}
             />
-
             <Form.Check
               type={"radio"}
               label={`Not purchased`}
@@ -190,7 +193,7 @@ function App() {
                 setFilterIsPurchased(false);
               }}
             />
-          </div>
+          </FormGroup>
           <Form.Control
             value={filterProductName}
             aria-label="Small"
@@ -230,8 +233,7 @@ function App() {
           </Form.Select>
         </InputWrapper>
       </Form>
-      <h2>List Product</h2>
-      <div className="px-5">
+      <div className="px-5 ">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -297,7 +299,7 @@ function App() {
           </tbody>
         </Table>
       </div>
-    </>
+    </div>
   );
 }
 
