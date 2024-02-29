@@ -45,9 +45,9 @@ const categories = [
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: end;
   padding: 3rem;
   gap: 1rem;
+  accent-color: #95a6ff;
 `;
 
 function App() {
@@ -95,14 +95,19 @@ function App() {
       const isIncluded = product.category === filterCategory;
       result = result && isIncluded;
     }
+
     return result;
   });
 
   return (
-    <div className="">
+    <div className=" bg-gradient">
+      <div className="text-center text-white text-uppercase display-2 ">
+        Shopping List
+      </div>
       <Form>
         <InputWrapper>
           <Form.Control
+            placeholder="Add product..."
             value={productName}
             aria-label="Small"
             aria-describedby="inputGroup-sizing-sm"
@@ -117,7 +122,7 @@ function App() {
             }}
             value={selectedMarket}
           >
-            <option>Select the market</option>
+            <option>Select the shop</option>
             {markets.map((market) => (
               <option value={market.id} key={market.id}>
                 {market.name}
@@ -141,6 +146,12 @@ function App() {
           </Form.Select>
           <Button
             onClick={() => {
+              if (!productName || !selectedCategory || !selectedMarket) {
+                alert(
+                  "Please fill in the product name, shop and category fields!"
+                );
+                return;
+              }
               const product = {
                 name: productName,
                 category: selectedCategory,
@@ -149,53 +160,54 @@ function App() {
               };
               setProducts([...products, product]);
             }}
-            variant="success"
           >
             Add
           </Button>
         </InputWrapper>
       </Form>
       <Form className="mb-5">
-        <InputWrapper className="d-flex align-items-center">
-          <h4 className="me-2 mt-1 text-light">Filter</h4>
-          <FormGroup
-            key={`default-radio`}
-            className="ms-3 me-3 px-2 py-2 d-flex justify-content-center rounded gap-2"
-            style={{ width: "max-content" }}
-          >
-            <Form.Check
-              type={"radio"}
-              label={`All`}
-              id={`default-radio-0`}
-              name="ispurchased"
-              checked={filterIsPurchased === null}
-              onClick={() => {
-                setFilterIsPurchased(null);
-              }}
-            />
-            <Form.Check
-              type={"radio"}
-              id={`default-radio-1`}
-              label={`Purchased`}
-              name="ispurchased"
-              checked={filterIsPurchased === true}
-              onClick={() => {
-                setFilterIsPurchased(true);
-              }}
-            />
-            <Form.Check
-              type={"radio"}
-              label={`Not purchased`}
-              id={`default-radio-2`}
-              name="ispurchased"
-              checked={filterIsPurchased === false}
-              onClick={() => {
-                setFilterIsPurchased(false);
-              }}
-            />
-          </FormGroup>
+        <InputWrapper>
+          <div className="bg-white rounded">
+            <FormGroup
+              key={`default-radio`}
+              className="ms-3 me-3 px-2 my-2 d-flex  gap-2"
+              style={{ width: "max-content" }}
+            >
+              <Form.Check
+                type={"radio"}
+                label={`All`}
+                id={`default-radio-0`}
+                name="ispurchased"
+                checked={filterIsPurchased === null}
+                onClick={() => {
+                  setFilterIsPurchased(null);
+                }}
+              />
+              <Form.Check
+                type={"radio"}
+                id={`default-radio-1`}
+                label={`Purchased`}
+                name="ispurchased"
+                checked={filterIsPurchased === true}
+                onClick={() => {
+                  setFilterIsPurchased(true);
+                }}
+              />
+              <Form.Check
+                type={"radio"}
+                label={`Not purchased`}
+                id={`default-radio-2`}
+                name="ispurchased"
+                checked={filterIsPurchased === false}
+                onClick={() => {
+                  setFilterIsPurchased(false);
+                }}
+              />
+            </FormGroup>
+          </div>
           <Form.Control
             value={filterProductName}
+            placeholder="Filter product..."
             aria-label="Small"
             aria-describedby="inputGroup-sizing-sm"
             onChange={(e) => {
@@ -209,7 +221,7 @@ function App() {
             }}
             value={filterMarket}
           >
-            <option value={"all"}>All markets</option>
+            <option value={"all"}>All shops</option>
             {markets.map((market) => (
               <option value={market.id} key={market.id}>
                 {market.name}
@@ -233,12 +245,12 @@ function App() {
           </Form.Select>
         </InputWrapper>
       </Form>
-      <div className="px-5 ">
+      <div className="px-5 text-center ">
         <Table striped bordered hover>
           <thead>
             <tr>
               <th>Product Name</th>
-              <th>Market Name</th>
+              <th>Shop Name</th>
               <th>Category Name</th>
               <th>Purchased</th>
               <th>Delete Product</th>
