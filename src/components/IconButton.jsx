@@ -3,7 +3,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 const IconButton = () => {
   return (
     <div>
-      <RiDeleteBinLine className="" />
+      <RiDeleteBinLine style={{ color: "royalblue", fontSize: "20px" }} />
     </div>
   );
 };

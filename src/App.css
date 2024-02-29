@@ -18,8 +18,8 @@ body {
   margin-top: 10%;
 }
 
-/* .add-to-cart-button {
-  background-color: rebeccapurple !important ; 
+.add-to-cart-button {
+  background-color: rgb(33, 96, 221) !important;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -29,17 +29,16 @@ body {
 }
 
 .add-to-cart-button:hover {
-  background-color: rebeccapurple !important; 
+  background-color: rgb(8, 16, 75) !important;
 }
 
 .add-to-cart-button:active {
-  transform: translateY(
-    1px
-  ) !important; 
+  transform: translateY(1px);
+}
 
-.cart-icon {
+.add-to-cart-icon {
   width: 20px !important;
   height: 20px !important;
   margin-right: 5px !important;
-  fill: white !important;  
-} */
+  fill: white !important;
+}
