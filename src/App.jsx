@@ -48,6 +48,10 @@ const categories = [
     id: 5,
     name: "Books",
   },
+  {
+    id: 6,
+    name: "Other",
+  },
 ];
 
 const InputWrapper = styled.div`
