@@ -108,7 +108,7 @@ function App() {
 
   return (
     <div className=" bg-gradient">
-      <div className="text-center text-white text-uppercase display-2 ">
+      <div className="text-center text-white text-uppercase display-2 pt-5 ">
         Shopping List
       </div>
       <Form>
